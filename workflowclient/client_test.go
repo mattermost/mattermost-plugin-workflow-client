@@ -38,7 +38,7 @@ func TestWorkflowCallbacks(t *testing.T) {
 	mockPluginAPI.On("PluginHTTP", mock.AnythingOfType("*http.Request")).Return(&http.Response{StatusCode: http.StatusOK, Body: http.NoBody})
 
 	client := NewClientPlugin(mockPluginAPI)
-	err := client.WorkflowCallback("callbackurl", ActivateParameters{})
+	err := client.NotifyWorkflow("callbackurl", ActivateParameters{})
 	require.Nil(t, err)
 }
 
@@ -48,6 +48,6 @@ func TestWorkflowCallbacksErr(t *testing.T) {
 	mockPluginAPI.On("PluginHTTP", mock.AnythingOfType("*http.Request")).Return(nil)
 
 	client := NewClientPlugin(mockPluginAPI)
-	err := client.WorkflowCallback("callbackurl", ActivateParameters{})
+	err := client.NotifyWorkflow("callbackurl", ActivateParameters{})
 	require.Error(t, err)
 }

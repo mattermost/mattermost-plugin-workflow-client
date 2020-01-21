@@ -34,11 +34,11 @@ func NewClientPlugin(api PluginAPI) *Client {
 	return client
 }
 
-func (c *Client) WorkflowCallback(callbackURL string, params ActivateParameters) error {
-	return c.WorkflowCallbacks([]string{callbackURL}, params)
+func (c *Client) NotifyWorkflow(callbackURL string, params ActivateParameters) error {
+	return c.NotifyWorkflows([]string{callbackURL}, params)
 }
 
-func (c *Client) WorkflowCallbacks(callbackURLs []string, params ActivateParameters) error {
+func (c *Client) NotifyWorkflows(callbackURLs []string, params ActivateParameters) error {
 	out, err := json.Marshal(&params)
 	if err != nil {
 		return err
